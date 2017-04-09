@@ -1,12 +1,12 @@
-if(!file.exists("Data/data.zip")){
+if(!file.exists("Data2/data.zip")){
         dir.create("Data")
         # Download and extract zipped data file
         fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-        download.file(fileUrl, destfile="Data/data.zip")
-        unzip(zipfile="Data/data.zip", exdir="Data")
+        download.file(fileUrl, destfile="Data2/data.zip")
+        unzip(zipfile="Data2/data.zip", exdir="Data2")
 }
 
-filePath <- "Data/household_power_consumption.txt"
+filePath <- "Data2/household_power_consumption.txt"
 data <- read.csv(filePath, skip=66637, nrows=2880, na.strings = "?", header=FALSE, sep=";")
 
 # Read the variable names
@@ -21,5 +21,5 @@ data$DateTime <- as.POSIXct(paste(data$Date, data$Time, sep=" "), format="%d/%m/
 hist(data$Global_active_power, main="Global Active Power", xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
 
 ## Saving "Plot1.png" to file
-dev.copy(png, file="Data/plot1a.png", height=480, width=480)
+dev.copy(png, file="Data2/plot1.png", height=480, width=480)
 dev.off()
